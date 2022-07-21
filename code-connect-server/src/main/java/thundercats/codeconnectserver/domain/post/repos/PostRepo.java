@@ -1,4 +1,13 @@
 package thundercats.codeconnectserver.domain.post.repos;
 
-public interface PostRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+import thundercats.codeconnectserver.domain.UserProfile.models.UserProfile;
+import thundercats.codeconnectserver.domain.group.model.Group;
+import thundercats.codeconnectserver.domain.post.models.Post;
+
+import java.util.List;
+
+public interface PostRepo extends JpaRepository<Post, Long> {
+    List<Post> findByProfile(UserProfile user);
+    List<Post> findByGroup(Group group);
 }
