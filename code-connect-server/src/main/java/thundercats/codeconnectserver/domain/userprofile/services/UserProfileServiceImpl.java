@@ -1,16 +1,14 @@
 package thundercats.codeconnectserver.domain.userprofile.services;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 import thundercats.codeconnectserver.domain.userprofile.repos.UserProfileRepo;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-@Slf4j
 public class UserProfileServiceImpl implements UserProfileService{
     private UserProfileRepo userProfileRepo;
 
@@ -19,18 +17,14 @@ public class UserProfileServiceImpl implements UserProfileService{
         this.userProfileRepo = userProfileRepo;
     }
     @Override
-    public UserProfile create(UserProfile userProfile) throws ResourceCreationException{
-        Optional<UserProfile> optional = userProfileRepo.findByEmail(userProfile.getEmail());
-        if(optional.isPresent())
-            throw new ResourceCreationException("User with email exists " + userProfile.getEmail());
+    public UserProfile create(UserProfile userProfile){
         return userProfileRepo.save(userProfile);
     }
 
     @Override
     public UserProfile getById(Long id) throws ResourceNotFoundException {
-        UserProfile userProfile = UserProfileRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User with id does not exists " + id));
-        return userProfile;
+        return UserProfileRepo.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("No User with id:" + id));
     }
 
     @Override
