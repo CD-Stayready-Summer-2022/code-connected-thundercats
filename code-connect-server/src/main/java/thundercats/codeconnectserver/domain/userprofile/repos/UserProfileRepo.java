@@ -1,4 +1,11 @@
-package thundercats.codeconnectserver.domain.UserProfile.repos;
+package thundercats.codeconnectserver.domain.userprofile.repos;
 
-public interface UserProfileRepo {
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
+
+import java.util.Optional;
+
+public interface UserProfileRepo extends JpaRepository<UserProfile, Long> {
+    Optional<UserProfile> findByEmail(String email);
 }
