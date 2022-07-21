@@ -30,12 +30,20 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public Comment getById(Long id) throws ResourceNotFoundException {
-        return null;
+        return commentRepo.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("No Comment with id: " + id));
     }
 
     @Override
     public Comment update(Comment comment) throws ResourceNotFoundException {
         return null;
+    }
+
+    @Override
+    public Comment update(Long id, Comment comment) throws ResourceNotFoundException {
+        Comment updateComment = commentRepo.findById(comment.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
+        return commentRepo.save(updateComment);
     }
 
     @Override

@@ -17,23 +17,35 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    public String content;
+    private String content;
     private UserProfile userProfile;
     private Post post;
 
     public Comment(){
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Comment comment = (Comment) o;
-        return id.equals(comment.id) && Objects.equals(content, comment.content) && Objects.equals(userProfile, comment.userProfile) && Objects.equals(post, comment.post);
+    private String getContent() {
+        return content;
     }
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, content, userProfile, post);
+
+    private void setContent(String content) {
+        this.content = content;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     @Override
