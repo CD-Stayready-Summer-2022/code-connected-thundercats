@@ -3,8 +3,8 @@ package thundercats.codeconnectserver.domain.message.repos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import thundercats.codeconnectserver.domain.message.models.Message;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface MessageRepo extends JpaRepository<Message, Long> {
-    Optional<Message> findByRecievingUser(Long receivingUser);
+    List<Message> findByReceivingUser(Long receivingUser);
 }

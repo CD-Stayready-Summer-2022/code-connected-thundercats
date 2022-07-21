@@ -2,13 +2,11 @@ package thundercats.codeconnectserver.domain.message.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import thundercats.codeconnectserver.domain.exceptions.ResourceCreationException;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.message.models.Message;
 import thundercats.codeconnectserver.domain.message.repos.MessageRepo;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MessageServiceImpl implements MessageService{
@@ -30,9 +28,8 @@ public class MessageServiceImpl implements MessageService{
     }
 
     @Override
-    public Message getByRecievingUser(Long receivingUserId) throws ResourceNotFoundException {
-        return messageRepo.findByRecievingUser(receivingUserId)
-                .orElseThrow(()->new ResourceNotFoundException("No message to/from receivingUser found"));
+    public List<Message> getByReceivingUser(Long receivingUserId){
+        return messageRepo.findByReceivingUser(receivingUserId);
     }
 
     @Override
