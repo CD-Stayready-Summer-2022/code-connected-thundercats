@@ -78,7 +78,7 @@ public class Education {
 
     @Override
     public String toString() {
-        return String.format("%s %s %s %s %s %b %1.2f", schoolName, location, startDate, endDate, fieldOfStudy, isGraduated, gradePointAvg);
+        return String.format("%s, %s, %s, %s, %s, %b, %1.2f", schoolName, location, startDate, endDate, fieldOfStudy, isGraduated, gradePointAvg);
 
     }
 }
