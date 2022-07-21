@@ -1,7 +1,8 @@
-package thundercats.codeconnectserver.education;
+package thundercats.codeconnectserver.domain.education;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import thundercats.codeconnectserver.domain.education.Education;
 
 public class EducationTest {
     @Test

@@ -1,4 +1,4 @@
-package thundercats.codeconnectserver.education;
+package thundercats.codeconnectserver.domain.education;
 
 public class Education {
     private String schoolName;

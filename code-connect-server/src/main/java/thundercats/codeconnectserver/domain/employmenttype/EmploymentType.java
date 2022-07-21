@@ -1,4 +1,4 @@
-package thundercats.codeconnectserver.employmenttype;
+package thundercats.codeconnectserver.domain.employmenttype;
 
 public enum EmploymentType {
     FULLTIME,

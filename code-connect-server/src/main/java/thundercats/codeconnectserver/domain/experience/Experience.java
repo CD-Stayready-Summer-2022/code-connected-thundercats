@@ -1,4 +1,4 @@
-package thundercats.codeconnectserver.experience;
+package thundercats.codeconnectserver.domain.experience;
 
 public class Experience {
     private String jobTitle;
