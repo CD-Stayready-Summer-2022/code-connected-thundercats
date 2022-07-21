@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS `message` (
     `receiving_user` int,
     `sending_user` int,
     `content` varchar(256),
-    `sent_time` varchar(50)
+    `sent_time` TIMESTAMP NULL DEFAULT NULL
 )

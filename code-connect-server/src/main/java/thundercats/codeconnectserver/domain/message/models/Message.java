@@ -1,20 +1,21 @@
 package thundercats.codeconnectserver.domain.message.models;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.*;
+import thundercats.codeconnectserver.domain.UserProfile.models.UserProfile;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.TimeZone;
 
 @Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Data
 public class Message {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,11 +26,15 @@ public class Message {
     private Long sendingUser;
     @NonNull
     private String content;
+
     @NonNull
-    private String sentTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date now = new Date();
+
+    private SimpleDateFormat sdf = new SimpleDateFormat ("yyyy.MM.dd 'at' hh:mm:ss");
 
     @Override
     public String toString() {
-        return String.format("%d %s %s %s %s", id, recievingUser, sendingUser, content, sentTime);
+        return String.format("%d %s %s %s %s", id, recievingUser, sendingUser, content, now);
     }
 }
