@@ -43,6 +43,8 @@ public class CommentServiceImpl implements CommentService{
     public Comment update(Long id, Comment comment) throws ResourceNotFoundException {
         Comment updateComment = commentRepo.findById(comment.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
+                updateComment.setContent(updateComment.getContent());
+                updateComment.setPost(updateComment.getPost());
         return commentRepo.save(updateComment);
     }
 

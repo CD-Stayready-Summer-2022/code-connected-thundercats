@@ -13,41 +13,17 @@ import java.util.Objects;
 @AllArgsConstructor
 @Entity
 @Table(name = "comments")
+@NoArgsConstructor
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NonNull
     private String content;
+    @NonNull
     private UserProfile userProfile;
+    @NonNull
     private Post post;
-
-    public Comment(){
-    }
-
-    private String getContent() {
-        return content;
-    }
-
-    private void setContent(String content) {
-        this.content = content;
-    }
-
-    public UserProfile getUserProfile() {
-        return userProfile;
-    }
-
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
     @Override
     public String toString() {
             return String.format("%d %s %s %s", id, content, userProfile, post);
