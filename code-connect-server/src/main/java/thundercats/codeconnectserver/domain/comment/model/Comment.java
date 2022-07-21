@@ -17,7 +17,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String content;
+    public String content;
     private UserProfile userProfile;
     private Post post;
 
@@ -36,6 +36,10 @@ public class Comment {
         return Objects.hash(id, content, userProfile, post);
     }
 
+    @Override
+    public String toString() {
+            return String.format("%d %s %s %s", id, content, userProfile, post);
+        }
     }
 
 
