@@ -1,4 +1,4 @@
-package thundercats.codeconnectserver.domain.userprofile.controllers;
+package thundercats.codeconnectserver.domain.UserProfile.controllers;
 
 public class UserProfileController {
 }

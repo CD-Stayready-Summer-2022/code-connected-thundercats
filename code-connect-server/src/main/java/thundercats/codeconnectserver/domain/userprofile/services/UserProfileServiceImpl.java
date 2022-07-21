@@ -1,4 +1,4 @@
-package thundercats.codeconnectserver.domain.userprofile.services;
+package thundercats.codeconnectserver.domain.UserProfile.services;
 
 public class UserProfileServiceImpl {
 }

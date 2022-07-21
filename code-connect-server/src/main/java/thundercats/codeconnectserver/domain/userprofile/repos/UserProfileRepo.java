@@ -1,4 +1,4 @@
-package thundercats.codeconnectserver.domain.userprofile.repos;
+package thundercats.codeconnectserver.domain.UserProfile.repos;
 
 public interface UserProfileRepo {
 }

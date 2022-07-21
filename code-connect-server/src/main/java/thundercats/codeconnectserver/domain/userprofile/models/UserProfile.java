@@ -1,4 +1,4 @@
-package thundercats.codeconnectserver.domain.userprofile.models;
+package thundercats.codeconnectserver.domain.UserProfile.models;
 
 public class UserProfile {
 }
