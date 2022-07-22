@@ -27,29 +27,23 @@ public class CommentServiceImpl implements CommentService{
     public List<Comment> getAll() {
         return commentRepo.findAll();
     }
-
     @Override
     public Comment getById(Long id) throws ResourceNotFoundException {
         return commentRepo.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException("No Comment with id: " + id));
     }
-
     @Override
-    public Comment update(Comment comment) throws ResourceNotFoundException {
-        return null;
-    }
-
-    @Override
-    public Comment update(Long id, Comment comment) throws ResourceNotFoundException {
+    public Comment update(Comment comment, Long id) throws ResourceNotFoundException {
         Comment updateComment = commentRepo.findById(comment.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id: " + id));
-                updateComment.setContent(updateComment.getContent());
-                updateComment.setPost(updateComment.getPost());
+                .orElseThrow(() -> new ResourceNotFoundException("No comment with id: " + id));
+        updateComment.setContent(updateComment.getContent());
+        updateComment.setPost(updateComment.getPost());
         return commentRepo.save(updateComment);
     }
-
     @Override
-    public void delete(Comment comment) throws ResourceNotFoundException {
-
+    public void delete(Long id) throws ResourceNotFoundException {
+        Comment comment = commentRepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No comment with id " + id));
+                commentRepo.delete(comment);
     }
 }

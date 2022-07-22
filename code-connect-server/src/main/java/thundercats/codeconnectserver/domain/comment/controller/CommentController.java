@@ -1,4 +1,4 @@
-//package thundercats.codeconnectserver.domain.comment.controller;
-//
-//public class CommentController {
-//}
+package thundercats.codeconnectserver.domain.comment.controller;
+
+public class CommentController {
+}
