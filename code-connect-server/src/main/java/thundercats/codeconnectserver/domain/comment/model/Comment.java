@@ -2,7 +2,7 @@ package thundercats.codeconnectserver.domain.comment.model;
 
 
 import lombok.*;
-import thundercats.codeconnectserver.domain.UserProfile.models.UserProfile;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 import thundercats.codeconnectserver.domain.post.models.Post;
 
 
