@@ -85,8 +85,8 @@ public class MessageServiceTest {
         List<Message> messages = new ArrayList<>();
         messages.add(savedMessage01);
         messages.add(savedMessage02);
-        BDDMockito.doReturn(messages).when(messageRepo).findByReceivingUser(1L);
-        List<Message> actualMessages = messageService.getByReceivingUser(1L);
+        BDDMockito.doReturn(messages).when(messageRepo).findByReceivingUserId(1L);
+        List<Message> actualMessages = messageService.getByReceivingUserId(1L);
         Integer expected = 2;
         Integer actual = actualMessages.size();
         Assertions.assertEquals(expected, actual);

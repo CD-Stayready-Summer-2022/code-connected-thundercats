@@ -6,5 +6,5 @@ import thundercats.codeconnectserver.domain.message.models.Message;
 import java.util.List;
 
 public interface MessageRepo extends JpaRepository<Message, Long> {
-    List<Message> findByReceivingUser(Long receivingUser);
+    List<Message> findByReceivingUserId(Long receivingUserId);
 }
