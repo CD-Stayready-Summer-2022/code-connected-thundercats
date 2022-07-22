@@ -1,4 +1,17 @@
 package thundercats.codeconnectserver.domain.post.services;
 
+import thundercats.codeconnectserver.domain.UserProfile.models.UserProfile;
+import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
+import thundercats.codeconnectserver.domain.post.models.Post;
+
+import java.util.List;
+
 public interface PostService {
+
+    Post create(UserProfile user, Post post);
+    Post getById(Long postId) throws ResourceNotFoundException;
+    List<Post> getAllFromUser(UserProfile user);
+    List<Post> getAll();
+    Post update(Long postId, Post postDetails) throws ResourceNotFoundException;
+    void delete(Long postId) throws ResourceNotFoundException;
 }
