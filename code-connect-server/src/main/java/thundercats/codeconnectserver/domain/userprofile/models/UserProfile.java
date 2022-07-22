@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Type;
 import thundercats.codeconnectserver.domain.education.Education;
 import thundercats.codeconnectserver.domain.experience.Experience;
 import thundercats.codeconnectserver.domain.group.model.Group;
@@ -11,8 +12,6 @@ import thundercats.codeconnectserver.domain.message.models.Message;
 import thundercats.codeconnectserver.domain.post.models.Post;
 
 import javax.persistence.*;
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -39,10 +38,21 @@ public class UserProfile {
     @NonNull
     private String accomplishments;
 
-    @ManyToOne
-    @JoinColumn(name = "education_ID")
-    private Education education;
+    //private Education education;
 
+    //private Experience experience;
+
+    //List<Post> posts;
+
+    //List<Long> followers;
+
+    //List<Long> following;
+
+    //List<Long> followRequests;
+
+    //public List<Group> groups;
+
+    //public List<Message> messages;
 }
 
 

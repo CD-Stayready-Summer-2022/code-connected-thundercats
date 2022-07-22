@@ -23,13 +23,18 @@ public class UserProfileServiceImpl implements UserProfileService{
 
     @Override
     public UserProfile getById(Long id) throws ResourceNotFoundException {
-        return UserProfileRepo.findById(id)
+        return userProfileRepo.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("No User with id:" + id));
     }
 
     @Override
+    public UserProfile getByEmail(String email) throws ResourceNotFoundException {
+        return null;
+    }
+
+    @Override
     public List<UserProfile> getAllUserProfiles() {
-        return UserProfileRepo.findAll();
+        return userProfileRepo.findAll();
     }
 
     @Override
@@ -38,16 +43,26 @@ public class UserProfileServiceImpl implements UserProfileService{
         savedUserProfile.setFirstName(userProfileDetail.getFirstName());
         savedUserProfile.setLastName(userProfileDetail.getLastName());
         savedUserProfile.setEmail(userProfileDetail.getEmail());
-        savedUserProfile.setEducation(userProfileDetail.getEducation());
+        //savedUserProfile.setEducation(userProfileDetail.getEducation());
         savedUserProfile.setSkills(userProfileDetail.getSkills());
         savedUserProfile.setAccomplishments(userProfileDetail.getAccomplishments());
-        return UserProfileRepo.save(savedUserProfile);
+        return userProfileRepo.save(savedUserProfile);
     }
 
     @Override
     public void delete(Long id) throws ResourceNotFoundException {
         UserProfile userProfile = getById(id);
-        UserProfileRepo.delete(userProfile);
+        userProfileRepo.delete(userProfile);
+    }
+
+    @Override
+    public void followUser(Long followingId, Long followerId) throws ResourceNotFoundException {
+
+    }
+
+    @Override
+    public void unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException {
+
     }
 }
 
