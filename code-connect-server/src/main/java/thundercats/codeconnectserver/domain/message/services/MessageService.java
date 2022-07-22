@@ -9,7 +9,7 @@ import java.util.List;
 public interface MessageService {
     Message create(Message message);
     Message getById(Long id) throws ResourceNotFoundException;
-    Message getByRecievingUser(Long receivingUserId) throws ResourceNotFoundException;
+    List<Message> getByReceivingUserId(Long receivingUserId);
     List<Message> getAll() ;
     void delete(Long id) throws ResourceNotFoundException;
 }

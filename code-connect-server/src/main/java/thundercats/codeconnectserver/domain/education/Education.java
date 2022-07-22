@@ -1,5 +1,7 @@
 package thundercats.codeconnectserver.domain.education;
 
+import javax.persistence.Entity;
+
 public class Education {
     private String schoolName;
     private String location;
