@@ -29,6 +29,3 @@ public class Comment {
             return String.format("%d %s %s %s", id, content, userProfile, post);
         }
     }
-
-
-
