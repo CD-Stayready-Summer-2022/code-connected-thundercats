@@ -1,7 +1,7 @@
 package thundercats.codeconnectserver.domain.message.models;
 
 import lombok.*;
-import thundercats.codeconnectserver.domain.UserProfile.models.UserProfile;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

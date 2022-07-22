@@ -1,7 +1,7 @@
 package thundercats.codeconnectserver.domain.userprofile.services;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import thundercats.codeconnectserver.domain.exceptions.ResourceCreationException;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Slf4j
 public class UserProfileServiceImpl implements UserProfileService{
     private UserProfileRepo userProfileRepo;
 
@@ -20,6 +19,7 @@ public class UserProfileServiceImpl implements UserProfileService{
     public UserProfileServiceImpl(UserProfileRepo userProfileRepo){
         this.userProfileRepo = userProfileRepo;
     }
+
     @Override
     public UserProfile create(UserProfile userProfile) throws ResourceCreationException {
         Optional<UserProfile> optional = userProfileRepo.findByEmail(userProfile.getEmail());
@@ -30,13 +30,12 @@ public class UserProfileServiceImpl implements UserProfileService{
 
     @Override
     public UserProfile getById(Long id) throws ResourceNotFoundException {
-        UserProfile userProfile = userProfileRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User with id does not exists " + id));
-        return userProfile;
+        return userProfileRepo.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("No User with id:" + id));
     }
 
     @Override
-    public UserProfile getByEmail(String email) {
+    public UserProfile getByEmail(String email) throws ResourceNotFoundException {
         return null;
     }
 
@@ -51,7 +50,7 @@ public class UserProfileServiceImpl implements UserProfileService{
         savedUserProfile.setFirstName(userProfileDetail.getFirstName());
         savedUserProfile.setLastName(userProfileDetail.getLastName());
         savedUserProfile.setEmail(userProfileDetail.getEmail());
-        savedUserProfile.setEducation(userProfileDetail.getEducation());
+        //savedUserProfile.setEducation(userProfileDetail.getEducation());
         savedUserProfile.setSkills(userProfileDetail.getSkills());
         savedUserProfile.setAccomplishments(userProfileDetail.getAccomplishments());
         return userProfileRepo.save(savedUserProfile);
@@ -61,6 +60,15 @@ public class UserProfileServiceImpl implements UserProfileService{
     public void delete(Long id) throws ResourceNotFoundException {
         UserProfile userProfile = getById(id);
         userProfileRepo.delete(userProfile);
+    }
+
+    @Override
+    public void followUser(Long followingId, Long followerId) throws ResourceNotFoundException {
+
+    }
+
+    @Override
+    public void unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException {
     }
 }
 

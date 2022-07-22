@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import thundercats.codeconnectserver.domain.exceptions.ResourceCreationException;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
@@ -40,7 +41,7 @@ public class UserProfileController {
     }
 
     @GetMapping("lookup")
-    public ResponseEntity<UserProfile> getByEmail(@RequestParam String email){
+    public ResponseEntity<UserProfile> getByEmail(@RequestParam String email) throws ResourceNotFoundException {
         UserProfile userProfile = userProfileService.getByEmail(email);
         return new ResponseEntity<>(userProfile, HttpStatus.OK);
     }
