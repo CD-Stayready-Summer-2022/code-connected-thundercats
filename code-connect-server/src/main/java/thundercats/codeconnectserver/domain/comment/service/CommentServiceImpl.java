@@ -19,7 +19,7 @@ public class CommentServiceImpl implements CommentService{
         this.commentRepo = commentRepo;
     }
     @Override
-    public Comment create(Comment comment, Long id) {
+    public Comment create(Comment comment) {
         return commentRepo.save(comment);
     }
 
@@ -34,10 +34,10 @@ public class CommentServiceImpl implements CommentService{
     }
     @Override
     public Comment update(Comment comment, Long id) throws ResourceNotFoundException {
-        Comment updateComment = commentRepo.findById(comment.getId())
+        Comment updateComment = commentRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No comment with id: " + id));
-        updateComment.setContent(updateComment.getContent());
-        updateComment.setPost(updateComment.getPost());
+        updateComment.setContent(comment.getContent());
+        updateComment.setPost(comment.getPost());
         return commentRepo.save(updateComment);
     }
     @Override

@@ -20,8 +20,12 @@ public class Comment {
     private Long id;
     @NonNull
     private String content;
+    @ManyToOne
+    @JoinColumn(name = "user_profile_id")
     @NonNull
     private UserProfile userProfile;
+    @ManyToOne
+    @JoinColumn(name = "post_id")
     @NonNull
     private Post post;
     @Override
