@@ -21,11 +21,11 @@ public class Comment {
     @NonNull
     private String content;
     @ManyToOne
-    @JoinColumn(name = "user_profile_id")
+   // @JoinColumn(name = "user_profile_id")
     @NonNull
     private UserProfile userProfile;
     @ManyToOne
-    @JoinColumn(name = "post_id")
+  //  @JoinColumn(name = "post_id")
     @NonNull
     private Post post;
 
