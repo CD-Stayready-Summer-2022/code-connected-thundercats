@@ -1,8 +1,8 @@
 package thundercats.codeconnectserver.domain.post.models;
 
 import lombok.*;
-import thundercats.codeconnectserver.domain.UserProfile.models.UserProfile;
 import thundercats.codeconnectserver.domain.comment.model.Comment;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 import javax.persistence.*;
 import java.util.ArrayList;

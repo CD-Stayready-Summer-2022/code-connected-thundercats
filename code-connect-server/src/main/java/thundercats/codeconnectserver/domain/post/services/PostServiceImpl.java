@@ -2,11 +2,11 @@ package thundercats.codeconnectserver.domain.post.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import thundercats.codeconnectserver.domain.UserProfile.models.UserProfile;
-import thundercats.codeconnectserver.domain.UserProfile.services.UserProfileService;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.post.models.Post;
 import thundercats.codeconnectserver.domain.post.repos.PostRepo;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
+import thundercats.codeconnectserver.domain.userprofile.services.UserProfileService;
 
 
 import java.util.List;

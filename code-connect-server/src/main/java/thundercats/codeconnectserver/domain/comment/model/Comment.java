@@ -28,6 +28,19 @@ public class Comment {
     @JoinColumn(name = "post_id")
     @NonNull
     private Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "comment_id")
+    private Post comment;
+
+    public Post getComment() {
+        return comment;
+    }
+
+    public void setComment(Post comment) {
+        this.comment = comment;
+    }
+
     @Override
     public String toString() {
             return String.format("%d %s %s %s", id, content, userProfile, post);
