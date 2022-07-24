@@ -7,6 +7,7 @@ import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import thundercats.codeconnectserver.domain.comment.model.Comment;
 import thundercats.codeconnectserver.domain.comment.repo.CommentRepo;
@@ -15,6 +16,7 @@ import thundercats.codeconnectserver.domain.post.models.Post;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 @SpringBootTest
+@ContextConfiguration
 @ExtendWith(SpringExtension.class)
 public class CommentServiceTest {
 

@@ -29,6 +29,21 @@ public class Comment {
     @NonNull
     private Post post;
 
+    @ManyToOne
+    @JoinColumn(name = "comment")
+    private Post comment;
+
+    public Post getComment() {
+        return comment;
+    }
+
+    public void setComment(Post comment) {
+        this.comment = comment;
+    }
+
+    public Comment(long l, String content, UserProfile userProfile, Post post) {
+    }
+
     public String getContent() {
         return content;
     }
