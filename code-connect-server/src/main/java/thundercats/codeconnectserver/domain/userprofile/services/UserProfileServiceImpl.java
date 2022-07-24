@@ -3,6 +3,7 @@ package thundercats.codeconnectserver.domain.userprofile.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
+import thundercats.codeconnectserver.domain.group.model.Group;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 import thundercats.codeconnectserver.domain.userprofile.repos.UserProfileRepo;
 
@@ -29,7 +30,8 @@ public class UserProfileServiceImpl implements UserProfileService{
 
     @Override
     public UserProfile getByEmail(String email) throws ResourceNotFoundException {
-        return null;
+        return userProfileRepo.findByEmail(email)
+                .orElseThrow(()-> new ResourceNotFoundException("No User with email:" + email));
     }
 
     @Override
@@ -51,18 +53,53 @@ public class UserProfileServiceImpl implements UserProfileService{
 
     @Override
     public void delete(Long id) throws ResourceNotFoundException {
+        userProfileRepo.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+id));
         UserProfile userProfile = getById(id);
         userProfileRepo.delete(userProfile);
+
     }
 
     @Override
     public void followUser(Long followingId, Long followerId) throws ResourceNotFoundException {
 
     }
-
     @Override
     public void unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException {
 
     }
+
+    @Override
+    public List<UserProfile> searchForUserByName(String firstName, String lastName) throws ResourceNotFoundException{
+        return null;
+    }
+    @Override
+    public List<Group> searchForGroupByName(String nameOfGroup) throws ResourceNotFoundException{
+        return null;
+    }
+
+    @Override
+    public void followGroup(Group group) throws ResourceNotFoundException {
+
+    }
+    @Override
+    public void unfollowGroup(Group group) throws ResourceNotFoundException {
+
+    }
+
+    //@Override
+    //public void likePost(Post post) throws ResourceNotFoundException{}
+    //@Override
+    //public void unlikePost(Post post) throws ResourceNotFoundException{}
+
+    @Override
+    public void acceptFollowRequest(Integer number) throws ResourceNotFoundException{
+
+    }
+    @Override
+    public void denyFollowRequest(Integer number) throws ResourceNotFoundException{
+
+    }
+
 }
 

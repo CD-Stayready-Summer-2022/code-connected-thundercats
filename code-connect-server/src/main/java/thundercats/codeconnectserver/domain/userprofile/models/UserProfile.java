@@ -9,7 +9,7 @@ import thundercats.codeconnectserver.domain.education.Education;
 import thundercats.codeconnectserver.domain.experience.Experience;
 import thundercats.codeconnectserver.domain.group.model.Group;
 import thundercats.codeconnectserver.domain.message.models.Message;
-import thundercats.codeconnectserver.domain.post.models.Post;
+
 
 import javax.persistence.*;
 import java.util.List;
