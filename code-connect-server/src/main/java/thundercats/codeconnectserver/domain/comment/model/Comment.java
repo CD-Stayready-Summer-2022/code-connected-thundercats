@@ -29,16 +29,19 @@ public class Comment {
     @NonNull
     private Post post;
 
-    @ManyToOne
-    @JoinColumn(name = "comment_id")
-    private Post comment;
-
-    public Post getComment() {
-        return comment;
+    public String getContent() {
+        return content;
     }
 
-    public void setComment(Post comment) {
-        this.comment = comment;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+    public Post getPost() {
+        return post;
     }
 
     @Override
