@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.group.model.Group;
 import thundercats.codeconnectserver.domain.message.models.Message;
@@ -21,9 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
 public class UserProfileServiceImplTest {
+
     @Autowired
     private UserProfileService userProfileService;
 
@@ -54,7 +57,7 @@ public class UserProfileServiceImplTest {
 
     @Test
     @DisplayName("createUserProfile - success")
-    public void createUserProfileTest01(){
+    public void createUserProfileTest01() throws ResourceCreationException {
         BDDMockito.doReturn(Optional.empty()).when(userProfileRepo).findById(ArgumentMatchers.any());
         BDDMockito.doReturn(savedUserProfile01).when(userProfileRepo).save(mockUserProfile);
         UserProfile userProfile = userProfileService.create(mockUserProfile);

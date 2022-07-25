@@ -11,6 +11,9 @@ public interface CommentService {
     List<Comment> getAll();
     Comment getById (Long id) throws ResourceNotFoundException;
     Comment update(Comment comment) throws ResourceNotFoundException;
+
+    Comment update(Long id, Comment comment) throws ResourceNotFoundException;
+
     void delete(Comment comment) throws ResourceNotFoundException;
 
 

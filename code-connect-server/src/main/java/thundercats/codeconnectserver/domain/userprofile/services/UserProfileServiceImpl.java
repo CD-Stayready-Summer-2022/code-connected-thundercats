@@ -1,7 +1,9 @@
 package thundercats.codeconnectserver.domain.userprofile.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+import thundercats.codeconnectserver.domain.exceptions.ResourceCreationException;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.group.model.Group;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
@@ -19,8 +21,12 @@ public class UserProfileServiceImpl implements UserProfileService{
     public UserProfileServiceImpl(UserProfileRepo userProfileRepo){
         this.userProfileRepo = userProfileRepo;
     }
+
     @Override
-    public UserProfile create(UserProfile userProfile){
+    public UserProfile create(UserProfile userProfile) throws ResourceCreationException {
+        Optional<UserProfile> optional = userProfileRepo.findByEmail(userProfile.getEmail());
+        if(optional.isPresent())
+            throw new ResourceCreationException("User with email exists " + userProfile.getEmail());
         return userProfileRepo.save(userProfile);
     }
 
@@ -91,6 +97,7 @@ public class UserProfileServiceImpl implements UserProfileService{
     }
     @Override
     public void unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException {
+
         Optional<UserProfile> UnFollowedUser = Optional.of(userProfileRepo.findById(unfollowingId)
                 .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ unfollowingId)));
         Optional<UserProfile> UnFollower = Optional.of(userProfileRepo.findById(unfollowedId)
@@ -134,6 +141,7 @@ public class UserProfileServiceImpl implements UserProfileService{
     }
     @Override
     public void unfollowGroup(Group group) throws ResourceNotFoundException {
+
 
     }
 
