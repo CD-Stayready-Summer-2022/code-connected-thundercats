@@ -9,9 +9,11 @@ import thundercats.codeconnectserver.domain.education.Education;
 import thundercats.codeconnectserver.domain.experience.Experience;
 import thundercats.codeconnectserver.domain.group.model.Group;
 import thundercats.codeconnectserver.domain.message.models.Message;
+import thundercats.codeconnectserver.domain.post.models.Post;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -39,31 +41,31 @@ public class UserProfile {
     private String accomplishments;
 
     @ManyToOne
-    //@JoinColumn(name = "group_id")
     private Group ownedGroup;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "group_id")
     private Group group;
 
-    //private Education education;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Education education;
 
-    //private Experience experience;
+    @ManyToOne
+    private Experience experience;
 
-    //public List<Post> posts;
+    @OneToMany
+    List<Post> posts;
 
-//    public List<Long> follower;
-//
-//    public List<Long> following;
-//
-//    public List<Long> followRequests;
 
-    //public List<Group> group;
+    List<Long> follower;
 
-    public static void save(UserProfile unfollowedUser) {}
+    List<Long> following;
 
-    //public List<Message> messages;
+   List<Long> followRequests;
 
+   List<Message> messages;
+
+    public static void save(UserProfile User) {
+    }
 }
 
 
