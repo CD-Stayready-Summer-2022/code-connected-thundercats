@@ -31,5 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
-
+**/firebase_config.json
+**/firebase_config2.json
 .DS_Store
+mvnw**
+.mvn**
