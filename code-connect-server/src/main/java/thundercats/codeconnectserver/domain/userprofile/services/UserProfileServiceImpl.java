@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import thundercats.codeconnectserver.domain.exceptions.ResourceCreationException;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.group.model.Group;
+import thundercats.codeconnectserver.domain.post.models.Post;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 import thundercats.codeconnectserver.domain.userprofile.repos.UserProfileRepo;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,68 +70,78 @@ public class UserProfileServiceImpl implements UserProfileService{
 
     @Override
     public void followUser(Long followingId, Long followerId) throws ResourceNotFoundException {
-        Optional<UserProfile> FollowedUser = Optional.of(userProfileRepo.findById(followingId)
-                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ followingId)));
-        Optional<UserProfile> Follower = Optional.of(userProfileRepo.findById(followerId)
-                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ followingId)));
 
-        UserProfile followedUser = FollowedUser.get();
-        UserProfile follower = Follower.get();
-
-        List<Long> followerList = followedUser.getFollower();
-        if(followerList == null){
-            followerList = new ArrayList<>();
-        }
-        followerList.add(follower.getId());
-        followedUser.setFollower(followerList);
-
-        List<Long> followingList = follower.getFollowing();
-        if(followingList == null){
-            followingList = new ArrayList<>();
-        }
-        followingList.add(followedUser.getId());
-        follower.setFollowing(followingList);
-
-        UserProfile.save(followedUser);
-        UserProfile.save(follower);
     }
+
     @Override
     public void unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException {
 
-        Optional<UserProfile> UnFollowedUser = Optional.of(userProfileRepo.findById(unfollowingId)
-                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ unfollowingId)));
-        Optional<UserProfile> UnFollower = Optional.of(userProfileRepo.findById(unfollowedId)
-                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ unfollowingId)));
-
-        UserProfile unfollowedUser = UnFollowedUser.get();
-        UserProfile unfollower = UnFollower.get();
-
-        List<Long> followerList = unfollowedUser.getFollower();
-        if(followerList == null){
-            followerList = new ArrayList<>();
-        }
-        followerList.remove(unfollower.getId());
-        unfollowedUser.setFollower(followerList);
-
-        List<Long> followingList = unfollower.getFollowing();
-        if(followingList == null){
-            followingList = new ArrayList<>();
-        }
-        followingList.remove(unfollowedUser.getId());
-        unfollower.setFollowing(followingList);
-
-        UserProfile.save(unfollowedUser);
-        UserProfile.save(unfollower);
     }
+
+//    @Override
+//    public void followUser(Long followingId, Long followerId) throws ResourceNotFoundException {
+//        Optional<UserProfile> FollowedUser = Optional.of(userProfileRepo.findById(followingId)
+//                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ followingId)));
+//        Optional<UserProfile> Follower = Optional.of(userProfileRepo.findById(followerId)
+//                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ followingId)));
+//
+//        UserProfile followedUser = FollowedUser.get();
+//        UserProfile follower = Follower.get();
+//
+//        List<Long> followerList = followedUser.getFollower();
+//        if(followerList == null){
+//            followerList = new ArrayList<>();
+//        }
+//        followerList.add(follower.getId());
+//        followedUser.setFollower(followerList);
+//
+//        List<Long> followingList = follower.getFollowing();
+//        if(followingList == null){
+//            followingList = new ArrayList<>();
+//        }
+//        followingList.add(followedUser.getId());
+//        follower.setFollowing(followingList);
+//
+//        UserProfile.save(followedUser);
+//        UserProfile.save(follower);
+//    }
+//    @Override
+//    public void unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException {
+//
+//        Optional<UserProfile> UnFollowedUser = Optional.of(userProfileRepo.findById(unfollowingId)
+//                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ unfollowingId)));
+//        Optional<UserProfile> UnFollower = Optional.of(userProfileRepo.findById(unfollowedId)
+//                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ unfollowingId)));
+//
+//        UserProfile unfollowedUser = UnFollowedUser.get();
+//        UserProfile unfollower = UnFollower.get();
+//
+//        List<Long> followerList = unfollowedUser.getFollower();
+//        if(followerList == null){
+//            followerList = new ArrayList<>();
+//        }
+//        followerList.remove(unfollower.getId());
+//        unfollowedUser.setFollower(followerList);
+//
+//        List<Long> followingList = unfollower.getFollowing();
+//        if(followingList == null){
+//            followingList = new ArrayList<>();
+//        }
+//        followingList.remove(unfollowedUser.getId());
+//        unfollower.setFollowing(followingList);
+//
+//        UserProfile.save(unfollowedUser);
+//        UserProfile.save(unfollower);
+//    }
 
     @Override
     public UserProfile searchForUserByName(String firstName, String lastName) throws ResourceNotFoundException{
-        return userProfileRepo.findByName(firstName,lastName)
+        return userProfileRepo.findByFirstNameAndLastName(firstName,lastName)
                 .orElseThrow(()-> new ResourceNotFoundException("No User with name:" + firstName+lastName));
     }
     @Override
     public Group searchForGroupByName(String nameOfGroup) throws ResourceNotFoundException{
-        return userProfileRepo.findByGroup(nameOfGroup)
+        return userProfileRepo.findByOwnedGroup(nameOfGroup)
                 .orElseThrow(()-> new ResourceNotFoundException("No Group with name:" + nameOfGroup));
     }
 
@@ -145,10 +155,15 @@ public class UserProfileServiceImpl implements UserProfileService{
 
     }
 
-    /*@Override
-    public void likePost(Post post) throws ResourceNotFoundException{}*/
-    /*@Override
-    public void unlikePost(Post post) throws ResourceNotFoundException{}*/
+    @Override
+    public void likePost(Post post) throws ResourceNotFoundException {
+
+    }
+
+    @Override
+    public void unlikePost(Post post) throws ResourceNotFoundException {
+
+    }
 
     @Override
     public void acceptFollowRequest(Integer number) throws ResourceNotFoundException{

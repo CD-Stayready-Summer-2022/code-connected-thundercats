@@ -2,6 +2,7 @@ package thundercats.codeconnectserver.domain.post.models;
 
 import lombok.*;
 import thundercats.codeconnectserver.domain.comment.model.Comment;
+import thundercats.codeconnectserver.domain.group.model.Group;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 import javax.persistence.*;
@@ -12,8 +13,6 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 @Table(name = "posts")
 public class Post {
 
@@ -29,6 +28,10 @@ public class Post {
     @Temporal(TemporalType.DATE) // tariq used TIMESTAMP, thought this might be more relevant
     private Date created;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_id")
+    private Group group;
+
     @PrePersist
     public void onCreate() {
         created = new Date();
@@ -37,6 +40,14 @@ public class Post {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post") // mappedBy may need to be changed
     private List<Comment> comments;
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 
     public Post(String content) {
         this.content = content;

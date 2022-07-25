@@ -85,7 +85,7 @@ public class PostServiceImplTest {
     public void getAllFromUserTest01() {
         List<Post> posts = new ArrayList<>();
         posts.add(savedPost01);
-        BDDMockito.doReturn(posts).when(postRepo).findByProfile(null);
+        BDDMockito.doReturn(posts).when(postRepo).findByPublisher(null);
         List<Post> actual = postService.getAllFromUser(null);
         Assertions.assertIterableEquals(posts, actual);
     }

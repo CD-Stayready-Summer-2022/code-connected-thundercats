@@ -34,7 +34,7 @@ public class PostController {
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/user/{id}")
     public ResponseEntity<List<Post>> getAllFromUser(@RequestBody UserProfile user) {
         List<Post> posts = postService.getAllFromUser(user);
         return new ResponseEntity<>(posts, HttpStatus.OK);

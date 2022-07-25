@@ -4,18 +4,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import thundercats.codeconnectserver.domain.comment.model.Comment;
 import thundercats.codeconnectserver.domain.post.models.Post;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Table(name = "groups")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +25,12 @@ public class Group {
     @NonNull
     private Long groupOwner;
     @NonNull
-    private List<Long> users;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group") // mappedBy may need to be changed
+    private List<UserProfile> users;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Post> groupPosts;
+
 
     @Override
     public String toString() {
