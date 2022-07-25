@@ -126,15 +126,64 @@ public class UserProfileServiceImpl implements UserProfileService{
     public Group searchForGroupByName(String nameOfGroup) throws ResourceNotFoundException{
         return userProfileRepo.findByGroup(nameOfGroup)
                 .orElseThrow(()-> new ResourceNotFoundException("No Group with name:" + nameOfGroup));
+
     }
 
     @Override
-    public void followGroup(Group group) throws ResourceNotFoundException {
+    public void followGroup(String nameOfGroup, Long followingId) throws ResourceNotFoundException {
+        Optional<Group> FollowedGroup = Optional.of(userProfileRepo.findByGroup(nameOfGroup)
+                .orElseThrow(()-> new ResourceNotFoundException("No Group with name:"+ nameOfGroup)));
+        Optional<UserProfile> Follower = Optional.of(userProfileRepo.findById(followingId)
+                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ followingId)));
 
+        Group followedGroup = FollowedGroup.get();
+        UserProfile follower = Follower.get();
+
+        List<Long> followerList = followedGroup.getFollower();
+        if(followerList == null){
+            followerList = new ArrayList<>();
+        }
+
+        followerList.add(follower.getId());
+        followedGroup.setFollower(followerList);
+
+        List<Long> followingList = follower.getFollowing();
+        if(followingList == null){
+            followingList = new ArrayList<>();
+        }
+        followingList.add(followedGroup.getByGroupName());
+        follower.setFollowing(followingList);
+
+        Group.save(followedGroup);
+        UserProfile.save(follower);
     }
     @Override
-    public void unfollowGroup(Group group) throws ResourceNotFoundException {
+    public void unfollowGroup(String nameOfGroup, Long unfollowingId) throws ResourceNotFoundException {
+        Optional<Group> UnfollowedGroup = Optional.of(userProfileRepo.findByGroup(nameOfGroup)
+                .orElseThrow(()-> new ResourceNotFoundException("No Group with name:"+ nameOfGroup)));
+        Optional<UserProfile> Unfollower = Optional.of(userProfileRepo.findById(unfollowingId)
+                .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ unfollowingId)));
 
+        Group unfollowedGroup = UnfollowedGroup.get();
+        UserProfile unfollower = Unfollower.get();
+
+        List<Long> followerList = unfollowedGroup.getFollower();
+        if(followerList == null){
+            followerList = new ArrayList<>();
+        }
+
+        followerList.remove(unfollower.getId());
+        unfollowedGroup.setFollower(followerList);
+
+        List<Long> followingList = unfollower.getFollowing();
+        if(followingList == null){
+            followingList = new ArrayList<>();
+        }
+        followingList.remove(unfollowedGroup.getByGroupName());
+        unfollower.setFollowing(followingList);
+
+        Group.save(unfollowedGroup);
+        UserProfile.save(unfollower);
     }
 
     /*@Override

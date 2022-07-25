@@ -17,8 +17,8 @@ public interface UserProfileService {
     void unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException;
     UserProfile searchForUserByName(String firstName, String lastName) throws ResourceNotFoundException;
     Group searchForGroupByName(String nameOfGroup) throws ResourceNotFoundException;
-    void followGroup(Group group) throws ResourceNotFoundException;
-    void unfollowGroup(Group group) throws ResourceNotFoundException;
+    void followGroup(String nameOfGroup, Long followingId) throws ResourceNotFoundException;
+    void unfollowGroup(String nameOfGroup, Long followingId) throws ResourceNotFoundException;
     //void likePost(Post post) throws ResourceNotFoundException;
     //void unlikePost(Post post) throws ResourceNotFoundException;
     void acceptFollowRequest(Integer number) throws ResourceNotFoundException;

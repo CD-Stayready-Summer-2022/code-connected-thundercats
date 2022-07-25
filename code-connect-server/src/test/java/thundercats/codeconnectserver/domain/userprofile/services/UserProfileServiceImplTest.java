@@ -134,6 +134,9 @@ public class UserProfileServiceImplTest {
     @Test
     @DisplayName("followUser - success")
     public void followUserTest01() throws ResourceNotFoundException {
+        BDDMockito.doReturn(Optional.of(savedUserProfile01)).when(userProfileRepo).findById(1L);
+        BDDMockito.doReturn(Optional.of(savedUserProfile01)).when(userProfileRepo).findById(2L);
+
 
     }
     @Test
