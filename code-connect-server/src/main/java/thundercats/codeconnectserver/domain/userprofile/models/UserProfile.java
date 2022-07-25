@@ -38,12 +38,12 @@ public class UserProfile {
     @NonNull
     private String accomplishments;
 
-    @ManyToOne
-    //@JoinColumn(name = "group_id")
+    @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Group ownedGroup;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "group_id")
+    @JoinColumn(name = "group_id")
     private Group group;
 
     //private Education education;
