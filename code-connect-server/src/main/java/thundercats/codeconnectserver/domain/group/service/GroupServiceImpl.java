@@ -1,5 +1,6 @@
 package thundercats.codeconnectserver.domain.group.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import thundercats.codeconnectserver.domain.exceptions.ResourceCreationException;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
@@ -8,6 +9,7 @@ import thundercats.codeconnectserver.domain.group.repo.GroupRepo;
 
 import java.util.List;
 
+@Service
 public class GroupServiceImpl implements GroupService{
 
     private GroupRepo groupRepo;
@@ -16,6 +18,7 @@ public class GroupServiceImpl implements GroupService{
     public GroupServiceImpl(GroupRepo groupRepo) {
         this.groupRepo = groupRepo;
     }
+
     @Override
     public Group create(Group group) throws ResourceCreationException {
         return null;
@@ -40,5 +43,6 @@ public class GroupServiceImpl implements GroupService{
     public void delete(Long id) throws ResourceNotFoundException {
         Group group = getById(id);
         groupRepo.delete(group);
+
     }
 }

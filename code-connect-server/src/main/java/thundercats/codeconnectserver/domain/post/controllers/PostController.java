@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import thundercats.codeconnectserver.domain.UserProfile.models.UserProfile;
 import thundercats.codeconnectserver.domain.post.models.Post;
 import thundercats.codeconnectserver.domain.post.services.PostService;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class PostController {
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/user/{id}")
     public ResponseEntity<List<Post>> getAllFromUser(@RequestBody UserProfile user) {
         List<Post> posts = postService.getAllFromUser(user);
         return new ResponseEntity<>(posts, HttpStatus.OK);

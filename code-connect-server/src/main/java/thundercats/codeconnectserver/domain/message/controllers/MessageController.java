@@ -34,13 +34,13 @@ public class MessageController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Message> getMessageById(@PathVariable  Long id) throws ResourceNotFoundException {
+    public ResponseEntity<Message> getMessageById(@PathVariable Long id) throws ResourceNotFoundException {
         Message message = messageService.getById(id);
         return ResponseEntity.ok(message);
     }
 
     @GetMapping("/messages/{receivingUserId}")
-    public ResponseEntity<List<Message>> getMessagesByReceivingUserId(@PathVariable  Long receivingUserId) {
+    public ResponseEntity<List<Message>> getMessagesByReceivingUserId(@PathVariable Long receivingUserId) {
         List<Message> messages = messageService.getByReceivingUserId(receivingUserId);
         return ResponseEntity.ok(messages);
     }

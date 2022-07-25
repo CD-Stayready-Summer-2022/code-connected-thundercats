@@ -9,15 +9,15 @@ import thundercats.codeconnectserver.domain.education.Education;
 import thundercats.codeconnectserver.domain.experience.Experience;
 import thundercats.codeconnectserver.domain.group.model.Group;
 import thundercats.codeconnectserver.domain.message.models.Message;
-import thundercats.codeconnectserver.domain.post.models.Post;
+
 
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Data
 @Entity
+@Table(name = "userprofiles")
 public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,21 +38,32 @@ public class UserProfile {
     @NonNull
     private String accomplishments;
 
+    @ManyToOne
+    //@JoinColumn(name = "group_id")
+    private Group ownedGroup;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "group_id")
+    private Group group;
+
     //private Education education;
 
     //private Experience experience;
 
-    //List<Post> posts;
+    //public List<Post> posts;
 
-    //List<Long> followers;
+//    public List<Long> follower;
+//
+//    public List<Long> following;
+//
+//    public List<Long> followRequests;
 
-    //List<Long> following;
+    //public List<Group> group;
 
-    //List<Long> followRequests;
-
-    //public List<Group> groups;
+    public static void save(UserProfile unfollowedUser) {}
 
     //public List<Message> messages;
+
 }
 
 
