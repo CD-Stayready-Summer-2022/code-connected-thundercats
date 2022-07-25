@@ -46,8 +46,8 @@ public class UserProfile {
     @ManyToOne(cascade = CascadeType.ALL)
     private Group group;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Education education;
+    //@ManyToOne(cascade = CascadeType.ALL)
+   // private Education education;
 
     @ManyToOne
     private Experience experience;

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import thundercats.codeconnectserver.domain.exceptions.ResourceCreationException;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.group.model.Group;
-import thundercats.codeconnectserver.domain.group.repo.GroupRepo;
 import thundercats.codeconnectserver.domain.post.models.Post;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 import thundercats.codeconnectserver.domain.userprofile.repos.UserProfileRepo;
@@ -71,7 +70,7 @@ public class UserProfileServiceImpl implements UserProfileService{
     }
 
     @Override
-    public void followUser(Long followingId, Long followerId) throws ResourceNotFoundException {
+    public UserProfile followUser(Long followingId, Long followerId) throws ResourceNotFoundException {
         Optional<UserProfile> FollowedUser = Optional.of(userProfileRepo.findById(followingId)
                 .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+followingId)));
         Optional<UserProfile> Follower = Optional.of(userProfileRepo.findById(followerId)
@@ -98,10 +97,11 @@ public class UserProfileServiceImpl implements UserProfileService{
 
         UserProfile.save(followedUser);
         UserProfile.save(follower);
+        return followedUser;
     }
 
     @Override
-    public void unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException {
+    public UserProfile unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException {
         Optional<UserProfile> UnFollowedUser = Optional.of(userProfileRepo.findById(unfollowingId)
                 .orElseThrow(()-> new ResourceNotFoundException("No User Profile with id:"+ unfollowingId)));
         Optional<UserProfile> UnFollower = Optional.of(userProfileRepo.findById(unfollowedId)
@@ -127,6 +127,7 @@ public class UserProfileServiceImpl implements UserProfileService{
 
         UserProfile.save(unfollowedUser);
         UserProfile.save(unfollower);
+        return unfollowedUser;
     }
 
     @Override
@@ -142,6 +143,16 @@ public class UserProfileServiceImpl implements UserProfileService{
     }
 
     @Override
+    public void followGroup(String nameOfGroup, Long followingId) throws ResourceNotFoundException {
+
+    }
+
+    @Override
+    public void unfollowGroup(String nameOfGroup, Long unfollowingId) throws ResourceNotFoundException {
+
+    }
+
+   /* @Override
     public void followGroup(String nameOfGroup, Long followingId) throws ResourceNotFoundException {
         Optional<Group> FollowedGroup = Optional.of(GroupRepo.findByGroup(nameOfGroup)
                 .orElseThrow(()-> new ResourceNotFoundException("No Group with name:"+ nameOfGroup)));
@@ -197,7 +208,7 @@ public class UserProfileServiceImpl implements UserProfileService{
 
         Group.save(unfollowedGroup);
         UserProfile.save(unfollower);
-    }
+    }*/
 
     @Override
     public void likePost(Post post) throws ResourceNotFoundException {
