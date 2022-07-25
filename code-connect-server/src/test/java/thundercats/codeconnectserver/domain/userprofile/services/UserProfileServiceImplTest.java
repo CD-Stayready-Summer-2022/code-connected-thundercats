@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
+import thundercats.codeconnectserver.domain.group.model.Group;
 import thundercats.codeconnectserver.domain.message.models.Message;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 import thundercats.codeconnectserver.domain.userprofile.repos.UserProfileRepo;
@@ -32,6 +33,8 @@ public class UserProfileServiceImplTest {
     private UserProfile mockUserProfile;
     private UserProfile savedUserProfile01;
     private UserProfile savedUserProfile02;
+    private Group savedGroup01;
+    private Group savedGroup02;
 
     @BeforeEach
     public void setup(){
@@ -153,23 +156,34 @@ public class UserProfileServiceImplTest {
     @Test
     @DisplayName("searchForUserByName - success")
     public void searchForUserByNameTest01() throws ResourceNotFoundException {
-
+        BDDMockito.doReturn(Optional.of(savedUserProfile01)).when(userProfileRepo).findByName("jane", "doe");
+        UserProfile userProfile = userProfileService.searchForUserByName("jane", "doe");
+        Assertions.assertNotNull(userProfile);
     }
+
     @Test
     @DisplayName("searchForUserByName - fail")
     public void searchForUserByNameTest02(){
-
+        BDDMockito.doReturn(Optional.empty()).when(userProfileRepo).findByName("jane","doe");
+        Assertions.assertThrows(ResourceNotFoundException.class, ()->{
+            userProfileService.searchForUserByName("jane", "doe");
+        });
     }
 
     @Test
     @DisplayName("searchForGroupByName - success")
     public void searchForGroupByNameTest01() throws ResourceNotFoundException {
-
+        BDDMockito.doReturn(Optional.of(savedGroup01)).when(userProfileRepo).findByGroup("doe's group");
+        Group group = userProfileService.searchForGroupByName("doe's group");
+        Assertions.assertNotNull(group);
     }
     @Test
     @DisplayName("searchForGroupByName - fail")
     public void searchForGroupByNameTest02(){
-
+        BDDMockito.doReturn(Optional.empty()).when(userProfileRepo).findByGroup("doe's group");
+        Assertions.assertThrows(ResourceNotFoundException.class, ()->{
+            userProfileService.searchForGroupByName("doe's group");
+        });
     }
 
     @Test

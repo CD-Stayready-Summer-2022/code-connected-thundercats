@@ -15,12 +15,13 @@ public interface UserProfileService {
     void delete(Long id) throws ResourceNotFoundException;
     void followUser(Long followingId, Long followerId) throws ResourceNotFoundException;
     void unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException;
-    List<UserProfile> searchForUserByName(String firstName, String lastName) throws ResourceNotFoundException;
-    List<Group> searchForGroupByName(String nameOfGroup) throws ResourceNotFoundException;
+    UserProfile searchForUserByName(String firstName, String lastName) throws ResourceNotFoundException;
+    Group searchForGroupByName(String nameOfGroup) throws ResourceNotFoundException;
     void followGroup(Group group) throws ResourceNotFoundException;
     void unfollowGroup(Group group) throws ResourceNotFoundException;
     //void likePost(Post post) throws ResourceNotFoundException;
     //void unlikePost(Post post) throws ResourceNotFoundException;
     void acceptFollowRequest(Integer number) throws ResourceNotFoundException;
     void denyFollowRequest(Integer number) throws ResourceNotFoundException;
+
 }

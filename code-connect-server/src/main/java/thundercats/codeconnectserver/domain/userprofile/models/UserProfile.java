@@ -37,22 +37,25 @@ public class UserProfile {
 
     @NonNull
     private String accomplishments;
-
+    
     //private Education education;
 
     //private Experience experience;
 
-    //List<Post> posts;
+    //public List<Post> posts;
 
-    //List<Long> followers;
+    public List<Long> follower;
 
-    //List<Long> following;
+    public List<Long> following;
 
-    //List<Long> followRequests;
+    public List<Long> followRequests;
 
-    //public List<Group> groups;
+    public List<Group> group;
+
+    public static void save(UserProfile unfollowedUser) {}
 
     //public List<Message> messages;
+
 }
 
 

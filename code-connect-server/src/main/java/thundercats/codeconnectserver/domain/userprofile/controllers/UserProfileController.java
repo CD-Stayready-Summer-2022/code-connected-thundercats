@@ -55,4 +55,5 @@ public class UserProfileController {
         userProfileService.delete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
 }
