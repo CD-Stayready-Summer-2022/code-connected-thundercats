@@ -27,6 +27,7 @@ public class Comment {
     @ManyToOne
   //  @JoinColumn(name = "post_id")
     @NonNull
+    @ManyToOne
     private Post post;
 
     @ManyToOne

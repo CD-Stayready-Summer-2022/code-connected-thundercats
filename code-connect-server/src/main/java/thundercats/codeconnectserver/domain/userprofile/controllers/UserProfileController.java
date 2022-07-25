@@ -34,27 +34,28 @@ public class UserProfileController {
         return new ResponseEntity<>(userProfiles, HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<UserProfile> getById(@PathVariable("id") Long id) throws ResourceNotFoundException {
         UserProfile userProfile = userProfileService.getById(id);
         return new ResponseEntity<>(userProfile, HttpStatus.OK);
     }
 
-    @GetMapping("lookup")
-    public ResponseEntity<UserProfile> getByEmail(@RequestParam String email) throws ResourceNotFoundException {
+    @GetMapping("/{email}")
+    public ResponseEntity<UserProfile> getByEmail(@PathVariable("email") String email) throws ResourceNotFoundException {
         UserProfile userProfile = userProfileService.getByEmail(email);
         return new ResponseEntity<>(userProfile, HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<UserProfile> update(@PathVariable("id") Long id, @RequestBody UserProfile userProfileDetail) throws ResourceNotFoundException {
         userProfileService.update(id, userProfileDetail);
         return new ResponseEntity<>(userProfileDetail, HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id) throws ResourceNotFoundException {
         userProfileService.delete(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
 }

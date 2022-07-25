@@ -35,7 +35,7 @@ public class Post {
     }
     private Integer likes;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "comment") // mappedBy may need to be changed
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post") // mappedBy may need to be changed
     private List<Comment> comments;
 
     public Post(String content) {
