@@ -12,12 +12,12 @@ import thundercats.codeconnectserver.domain.message.models.Message;
 
 
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Data
 @Entity
+@Table(name = "userprofiles")
 public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,20 +37,28 @@ public class UserProfile {
 
     @NonNull
     private String accomplishments;
-    
+
+    @ManyToOne
+    //@JoinColumn(name = "group_id")
+    private Group ownedGroup;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "group_id")
+    private Group group;
+
     //private Education education;
 
     //private Experience experience;
 
     //public List<Post> posts;
 
-    public List<Long> follower;
+//    public List<Long> follower;
+//
+//    public List<Long> following;
+//
+//    public List<Long> followRequests;
 
-    public List<Long> following;
-
-    public List<Long> followRequests;
-
-    public List<Group> group;
+    //public List<Group> group;
 
     public static void save(UserProfile unfollowedUser) {}
 

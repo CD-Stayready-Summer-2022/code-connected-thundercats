@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import thundercats.codeconnectserver.domain.exceptions.ResourceCreationException;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 import thundercats.codeconnectserver.domain.userprofile.services.UserProfileService;
@@ -22,7 +24,7 @@ public class UserProfileController {
     }
 
     @PostMapping
-    public ResponseEntity<UserProfile> create(@RequestBody UserProfile userProfile){
+    public ResponseEntity<UserProfile> create(@RequestBody UserProfile userProfile) throws ResourceCreationException {
         userProfile = userProfileService.create(userProfile);
         return new ResponseEntity<>(userProfile, HttpStatus.CREATED);
     }

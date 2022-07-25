@@ -13,27 +13,50 @@ import java.util.Objects;
 @AllArgsConstructor
 @Entity
 @Table(name = "comments")
+@NoArgsConstructor
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    public String content;
+    @NonNull
+    private String content;
+    @ManyToOne
+   // @JoinColumn(name = "user_profile_id")
+    @NonNull
     private UserProfile userProfile;
+
+    @NonNull
+    @ManyToOne
     private Post post;
 
-    public Comment(){
+    @ManyToOne
+    @JoinColumn(name = "comment")
+    private Post comment;
+
+    public Post getComment() {
+        return comment;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Comment comment = (Comment) o;
-        return id.equals(comment.id) && Objects.equals(content, comment.content) && Objects.equals(userProfile, comment.userProfile) && Objects.equals(post, comment.post);
+    public void setComment(Post comment) {
+        this.comment = comment;
     }
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, content, userProfile, post);
+
+    public Comment(long l, String content, UserProfile userProfile, Post post) {
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public UserProfile getUserProfile() {
+        return userProfile;
+    }
+    public Post getPost() {
+        return post;
     }
 
     @Override
@@ -41,6 +64,3 @@ public class Comment {
             return String.format("%d %s %s %s", id, content, userProfile, post);
         }
     }
-
-
-
