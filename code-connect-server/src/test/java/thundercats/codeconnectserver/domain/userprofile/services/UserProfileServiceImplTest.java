@@ -141,8 +141,6 @@ public class UserProfileServiceImplTest {
         BDDMockito.doReturn(Optional.of(savedUserProfile01)).when(userProfileRepo).findById(2L);
         UserProfile userProfile = userProfileService.followUser(1L, 2L);
         Assertions.assertNull(userProfile);
-
-
     }
     @Test
     @DisplayName("followUser - fail")

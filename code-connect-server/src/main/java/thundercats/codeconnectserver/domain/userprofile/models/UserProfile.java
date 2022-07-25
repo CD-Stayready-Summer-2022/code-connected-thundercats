@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.hibernate.annotations.Type;
 import thundercats.codeconnectserver.domain.education.Education;
 import thundercats.codeconnectserver.domain.experience.Experience;
@@ -49,20 +50,23 @@ public class UserProfile {
     //@ManyToOne(cascade = CascadeType.ALL)
    // private Education education;
 
-    @ManyToOne
-    private Experience experience;
+    //@ManyToOne
+    //private Experience experience;
 
     @OneToMany
     List<Post> posts;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<UserProfile> follower;
 
-    List<Long> follower;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<UserProfile> following;
 
-    List<Long> following;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<UserProfile> followRequests;
 
-   List<Long> followRequests;
-
-   List<Message> messages;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Message> messages;
 
     public static void save(UserProfile User) {
     }
