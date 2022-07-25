@@ -23,6 +23,7 @@ public class Comment {
     @NonNull
     private UserProfile userProfile;
     @NonNull
+    @ManyToOne
     private Post post;
     @Override
     public String toString() {

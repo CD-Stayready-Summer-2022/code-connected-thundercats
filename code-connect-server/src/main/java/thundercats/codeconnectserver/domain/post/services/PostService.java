@@ -1,8 +1,8 @@
 package thundercats.codeconnectserver.domain.post.services;
 
-import thundercats.codeconnectserver.domain.UserProfile.models.UserProfile;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.post.models.Post;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 import java.util.List;
 
