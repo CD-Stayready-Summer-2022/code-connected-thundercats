@@ -24,8 +24,7 @@ public class Comment {
    // @JoinColumn(name = "user_profile_id")
     @NonNull
     private UserProfile userProfile;
-    @ManyToOne
-  //  @JoinColumn(name = "post_id")
+
     @NonNull
     @ManyToOne
     private Post post;
