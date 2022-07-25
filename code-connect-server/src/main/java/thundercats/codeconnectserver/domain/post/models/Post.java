@@ -1,8 +1,8 @@
 package thundercats.codeconnectserver.domain.post.models;
 
 import lombok.*;
-import thundercats.codeconnectserver.domain.UserProfile.models.UserProfile;
 import thundercats.codeconnectserver.domain.comment.model.Comment;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class Post {
     }
     private Integer likes;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "comment") // mappedBy may need to be changed
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post") // mappedBy may need to be changed
     private List<Comment> comments;
 
     public Post(String content) {
