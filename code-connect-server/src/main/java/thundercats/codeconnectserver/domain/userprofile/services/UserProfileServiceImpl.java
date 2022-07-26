@@ -79,20 +79,20 @@ public class UserProfileServiceImpl implements UserProfileService{
         UserProfile followedUser = FollowedUser.get();
         UserProfile follower = Follower.get();
 
-        List<Long> followerList = followedUser.getFollower();
+        List<UserProfile> followerList = followedUser.getFollower();
         if(followerList == null){
            followerList = new ArrayList<>();
        }
 
-        followerList.add(follower.getId());
+        followerList.add(follower);
         followedUser.setFollower(followerList);
 
-        List<Long> followingList = follower.getFollowing();
+        List<UserProfile> followingList = follower.getFollowing();
         if(followingList == null) {
             followingList = new ArrayList<>();
         }
 
-        followingList.add(followedUser.getId());
+        followingList.add(followedUser);
         follower.setFollowing(followingList);
 
         UserProfile.save(followedUser);
@@ -110,19 +110,19 @@ public class UserProfileServiceImpl implements UserProfileService{
         UserProfile unfollowedUser = UnFollowedUser.get();
         UserProfile unfollower = UnFollower.get();
 
-        List<Long> followerList = unfollowedUser.getFollower();
+        List<UserProfile> followerList = unfollowedUser.getFollower();
         if(followerList == null) {
             followerList = new ArrayList<>();
         }
 
-        followerList.remove(unfollower.getId());
+        followerList.remove(unfollower);
         unfollowedUser.setFollower(followerList);
 
-        List<Long> followingList = unfollower.getFollowing();
+        List<UserProfile> followingList = unfollower.getFollowing();
         if(followingList == null){
             followingList = new ArrayList<>();
         }
-        followingList.remove(unfollowedUser.getId());
+        followingList.remove(unfollowedUser);
         unfollower.setFollowing(followingList);
 
         UserProfile.save(unfollowedUser);
