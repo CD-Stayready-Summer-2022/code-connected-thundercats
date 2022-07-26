@@ -32,6 +32,12 @@ public class UserProfileServiceImpl implements UserProfileService{
     }
 
     @Override
+    public Boolean doesExist(String id) {
+        Optional<UserProfile> optional = userProfileRepo.findById(Long.valueOf(id));
+        return optional.isPresent();
+    }
+
+    @Override
     public UserProfile getById(Long id) throws ResourceNotFoundException {
         return userProfileRepo.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("No User with id:" + id));
