@@ -55,6 +55,9 @@ public class UserProfile {
     //@ManyToOne
     //private Experience experience;
 
+    @ManyToOne
+    private Experience experience;
+
     @OneToMany
     List<Post> posts;
 
