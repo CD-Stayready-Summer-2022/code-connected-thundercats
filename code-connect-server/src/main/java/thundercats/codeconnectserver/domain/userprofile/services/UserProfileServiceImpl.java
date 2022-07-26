@@ -68,7 +68,7 @@ public class UserProfileServiceImpl implements UserProfileService{
         userProfileRepo.delete(userProfile);
 
     }
-
+    /*
     @Override
     public UserProfile followUser(Long followingId, Long followerId) throws ResourceNotFoundException {
         Optional<UserProfile> FollowedUser = Optional.of(userProfileRepo.findById(followingId)
@@ -128,7 +128,7 @@ public class UserProfileServiceImpl implements UserProfileService{
         UserProfile.save(unfollowedUser);
         UserProfile.save(unfollower);
         return unfollowedUser;
-    }
+    }*/
 
     @Override
     public UserProfile searchForUserByName(String firstName, String lastName) throws ResourceNotFoundException{

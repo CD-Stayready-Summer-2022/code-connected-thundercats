@@ -1,17 +1,25 @@
 package thundercats.codeconnectserver.domain.experience;
 
 import thundercats.codeconnectserver.domain.employmenttype.EmploymentType;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class Experience {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String jobTitle;
     private String company;
     private String location;
     private String startDate;
     private String endDate;
     private EmploymentType employmentType;
+
+    @OneToOne
+    private UserProfile userProfile;
 
     public Experience(String jobTitle, String company, String location, String startDate, String endDate, EmploymentType employmentType) {
         this.jobTitle = jobTitle;
@@ -68,6 +76,14 @@ public class Experience {
 
     public void setEmploymentType(EmploymentType employmentType) {
         this.employmentType = employmentType;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String toString() {

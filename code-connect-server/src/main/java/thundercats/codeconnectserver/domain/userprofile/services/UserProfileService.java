@@ -16,8 +16,8 @@ public interface UserProfileService {
     List<UserProfile> getAllUserProfiles();
     UserProfile update(Long id, UserProfile userProfileDetail) throws ResourceNotFoundException;
     void delete(Long id) throws ResourceNotFoundException;
-    UserProfile followUser(Long followingId, Long followerId) throws ResourceNotFoundException;
-    UserProfile unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException;
+    //UserProfile followUser(Long followingId, Long followerId) throws ResourceNotFoundException;
+    //UserProfile unfollowUser(Long unfollowingId, Long unfollowedId) throws ResourceNotFoundException;
     UserProfile searchForUserByName(String firstName, String lastName) throws ResourceNotFoundException;
     Group searchForGroupByName(String nameOfGroup) throws ResourceNotFoundException;
     void followGroup(String nameOfGroup, Long followingId) throws ResourceNotFoundException;

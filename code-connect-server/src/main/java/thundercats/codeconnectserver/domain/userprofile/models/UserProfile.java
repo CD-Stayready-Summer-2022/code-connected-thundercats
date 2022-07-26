@@ -48,23 +48,23 @@ public class UserProfile {
     @JoinColumn(name = "group_id")
     private Group group;
 
-    //@ManyToOne(cascade = CascadeType.ALL)
-   // private Education education;
+    @OneToOne(mappedBy = "userProfile")
+    private Education education;
 
-    @ManyToOne
+    @OneToOne(mappedBy = "userProfile")
     private Experience experience;
 
     @OneToMany
     List<Post> posts;
 
 
-    List<Long> follower;
+    //List<Long> follower;
 
-    List<Long> following;
+    //List<Long> following;
 
-   List<Long> followRequests;
+    //List<Long> followRequests;
 
-   List<Message> messages;
+    //List<Message> messages;
 
     public static void save(UserProfile User) {
     }

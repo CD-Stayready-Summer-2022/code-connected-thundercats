@@ -1,8 +1,15 @@
 package thundercats.codeconnectserver.domain.education;
 
-import javax.persistence.Entity;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
+
+import javax.persistence.*;
+
 @Entity
 public class Education {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String schoolName;
     private String location;
     private String startDate;
@@ -10,6 +17,9 @@ public class Education {
     private String fieldOfStudy;
     private Boolean isGraduated;
     private Double gradePointAvg;
+
+    @OneToOne
+    private UserProfile userProfile;
 
     public Education(String schoolName, String location, String startDate, String endDate, String fieldOfStudy,
                      Boolean isGraduated, Double gradePointAvg) {
@@ -76,6 +86,14 @@ public class Education {
 
     public void setGradePointAvg(Double gradePointAvg) {
         this.gradePointAvg = gradePointAvg;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
