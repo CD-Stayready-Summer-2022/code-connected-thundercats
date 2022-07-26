@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface UserProfileService {
     UserProfile create(UserProfile userProfile) throws ResourceCreationException;
+    Boolean doesExist(String id);
     UserProfile getById(Long id) throws ResourceNotFoundException;
     UserProfile getByEmail(String email) throws ResourceNotFoundException;
     List<UserProfile> getAllUserProfiles();
