@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import thundercats.codeconnectserver.domain.comment.model.Comment;
 import thundercats.codeconnectserver.domain.post.models.Post;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
@@ -23,7 +22,9 @@ public class Group {
     @NonNull
     private String nameOfGroup;
     @NonNull
-    private Long groupOwner;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "owner_id", nullable = false)
+    private UserProfile owner;
     @NonNull
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group") // mappedBy may need to be changed
     private List<UserProfile> users;
@@ -37,7 +38,7 @@ public class Group {
         return "Group{" +
                 "id=" + id +
                 ", nameOfGroup='" + nameOfGroup + '\'' +
-                ", groupOwner=" + groupOwner +
+                ", owner=" + owner +
                 ", users=" + users +
                 ", groupPosts=" + groupPosts +
                 '}';

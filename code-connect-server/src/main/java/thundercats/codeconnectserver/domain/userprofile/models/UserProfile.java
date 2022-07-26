@@ -40,10 +40,12 @@ public class UserProfile {
     @NonNull
     private String accomplishments;
 
-    @ManyToOne
+    @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Group ownedGroup;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_id")
     private Group group;
 
     //@ManyToOne(cascade = CascadeType.ALL)
