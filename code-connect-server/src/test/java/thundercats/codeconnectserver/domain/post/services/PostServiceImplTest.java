@@ -13,6 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import thundercats.codeconnectserver.domain.exceptions.ResourceNotFoundException;
 import thundercats.codeconnectserver.domain.post.models.Post;
 import thundercats.codeconnectserver.domain.post.repos.PostRepo;
+import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,12 @@ public class PostServiceImplTest {
 
     @BeforeEach
     public void setUp() {
-        mockPost01 = new Post(null, "This is a post", 5, new ArrayList<>());
+        mockPost01 = new Post(new UserProfile(), "This is a post", 5, new ArrayList<>());
+        mockPost01.getPublisher().setId(1L);
 
-        savedPost01 = new Post(null, "This is a post", 5, new ArrayList<>());
+        savedPost01 = new Post(new UserProfile(), "This is a post", 5, new ArrayList<>());
         savedPost01.setId(1L);
+        savedPost01.getPublisher().setId(1L);
 
         savedPost02 = new Post(null, "Postssdsda", 500, new ArrayList<>());
         savedPost02.setId(1L);
@@ -49,7 +52,7 @@ public class PostServiceImplTest {
     @DisplayName("Create post - success")
     public void createTest01() {
         BDDMockito.doReturn(savedPost01).when(postRepo).save(mockPost01);
-        Post post = postService.create(null, mockPost01);
+        Post post = postService.create(1L, mockPost01);
         Assertions.assertEquals(savedPost01, post);
     }
 

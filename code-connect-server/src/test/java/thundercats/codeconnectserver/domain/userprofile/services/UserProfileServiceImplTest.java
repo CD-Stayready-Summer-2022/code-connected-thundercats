@@ -187,7 +187,7 @@ public class UserProfileServiceImplTest {
             userProfileService.searchForUserByName("jane", "doe");
         });
     }
-
+    /*
     @Test
     @DisplayName("searchForGroupByName - success")
     public void searchForGroupByNameTest01() throws ResourceNotFoundException {
@@ -202,7 +202,7 @@ public class UserProfileServiceImplTest {
         Assertions.assertThrows(ResourceNotFoundException.class, ()->{
             userProfileService.searchForGroupByName("doe's group");
         });
-    }
+    }*/
 
     @Test
     @DisplayName("followGroup - success")

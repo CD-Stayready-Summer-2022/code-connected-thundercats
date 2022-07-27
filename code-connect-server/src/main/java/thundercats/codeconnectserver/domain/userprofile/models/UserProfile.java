@@ -1,5 +1,6 @@
 package thundercats.codeconnectserver.domain.userprofile.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -38,8 +39,8 @@ public class UserProfile {
     @NonNull
     private String accomplishments;
 
-    @ManyToOne
-    private Group group;
+    //@ManyToOne
+    //private Group group;
 
     @OneToOne(mappedBy = "userProfile")
     private Education education;
@@ -48,6 +49,6 @@ public class UserProfile {
     private Experience experience;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisher")
+    @JsonManagedReference
     private List<Post> posts;
-
 }

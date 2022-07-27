@@ -1,5 +1,6 @@
 package thundercats.codeconnectserver.domain.post.controllers;
 
+import com.google.firebase.remoteconfig.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,9 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping
-    public ResponseEntity<Post> create(@RequestBody UserProfile user, @RequestBody Post post) {
-        post = postService.create(user, post);
+    @PostMapping("{id}")
+    public ResponseEntity<Post> create(@PathVariable("id") Long user_id, @RequestBody Post post) {
+        post = postService.create(user_id, post);
         return new ResponseEntity<>(post, HttpStatus.CREATED);
     }
 
@@ -35,8 +36,8 @@ public class PostController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<List<Post>> getAllFromUser(@RequestBody UserProfile user) {
-        List<Post> posts = postService.getAllFromUser(user);
+    public ResponseEntity<List<Post>> getAllFromUser(@PathVariable("id") Long user_id) {
+        List<Post> posts = postService.getAllFromUser(user_id);
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 

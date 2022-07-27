@@ -38,7 +38,7 @@ public class UserProfileController {
         return new ResponseEntity<>(userProfiles, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<UserProfile> getById(@PathVariable("id") Long id) throws ResourceNotFoundException {
         UserProfile userProfile = userProfileService.getById(id);
         return new ResponseEntity<>(userProfile, HttpStatus.OK);

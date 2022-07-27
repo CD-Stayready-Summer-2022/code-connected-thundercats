@@ -24,7 +24,7 @@ public class EducationTest {
         education.setStartDate("1/2/00");
         education.setEndDate("12/2/00");
         education.setFieldOfStudy("Information Technology");
-        education.setGraduated(false);
+        education.setIsGraduated(false);
         education.setGradePointAvg(3.24);
         String expected = education.toString();
         String actual = "Private University, Town Center, 1/2/00, 12/2/00, Information Technology, false, 3.24";
@@ -74,7 +74,7 @@ public class EducationTest {
 
     @Test
     void getterTest05(){
-        Boolean expected = education.getGraduated();
+        Boolean expected = education.getIsGraduated();
         Boolean actual = true;
         Assertions.assertEquals(expected, actual);
 

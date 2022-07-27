@@ -17,7 +17,6 @@ public class Education {
     private Long id;
     @NonNull
     private String schoolName;
-
     @NonNull
     private String location;
     @NonNull
@@ -33,7 +32,6 @@ public class Education {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="user_profile_id", referencedColumnName = "id")
-    @NonNull
     private UserProfile userProfile;
 
     @Override

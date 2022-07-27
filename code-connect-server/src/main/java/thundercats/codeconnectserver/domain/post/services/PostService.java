@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public interface PostService {
 
-    Post create(UserProfile user, Post post);
+    Post create(Long user_id, Post post);
     Post getById(Long postId) throws ResourceNotFoundException;
-    List<Post> getAllFromUser(UserProfile user);
+    List<Post> getAllFromUser(Long user_id);
     List<Post> getAll();
     Post update(Long postId, Post postDetails) throws ResourceNotFoundException;
     void delete(Long postId) throws ResourceNotFoundException;
