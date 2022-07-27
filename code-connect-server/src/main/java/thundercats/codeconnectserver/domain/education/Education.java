@@ -1,100 +1,40 @@
 package thundercats.codeconnectserver.domain.education;
 
+import lombok.*;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 import javax.persistence.*;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Education {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NonNull
     private String schoolName;
+
+    @NonNull
     private String location;
+    @NonNull
     private String startDate;
+    @NonNull
     private String endDate;
+    @NonNull
     private String fieldOfStudy;
+    @NonNull
     private Boolean isGraduated;
+    @NonNull
     private Double gradePointAvg;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_profile_id", referencedColumnName = "id")
+    @NonNull
     private UserProfile userProfile;
-
-    public Education(String schoolName, String location, String startDate, String endDate, String fieldOfStudy,
-                     Boolean isGraduated, Double gradePointAvg) {
-        this.schoolName = schoolName;
-        this.location = location;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.fieldOfStudy = fieldOfStudy;
-        this.isGraduated = isGraduated;
-        this.gradePointAvg = gradePointAvg;
-    }
-
-    public String getSchoolName() {
-        return schoolName;
-    }
-
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getFieldOfStudy() {
-        return fieldOfStudy;
-    }
-
-    public void setFieldOfStudy(String fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
-    }
-
-    public Boolean getGraduated() {
-        return isGraduated;
-    }
-
-    public void setGraduated(Boolean graduated) {
-        isGraduated = graduated;
-    }
-
-    public Double getGradePointAvg() {
-        return gradePointAvg;
-    }
-
-    public void setGradePointAvg(Double gradePointAvg) {
-        this.gradePointAvg = gradePointAvg;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public String toString() {
