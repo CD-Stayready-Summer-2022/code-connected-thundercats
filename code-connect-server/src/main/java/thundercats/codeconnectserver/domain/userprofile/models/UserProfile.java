@@ -38,10 +38,6 @@ public class UserProfile {
     @NonNull
     private String accomplishments;
 
-    @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Group ownedGroup;
-
     @ManyToOne
     private Group group;
 
@@ -54,17 +50,4 @@ public class UserProfile {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisher")
     private List<Post> posts;
 
-
-    //List<Long> follower;
-
-    //List<Long> following;
-
-    //List<Long> followRequests;
-
-    //List<Message> messages;
-
-    public static void save(UserProfile User) {
-    }
 }
-
-

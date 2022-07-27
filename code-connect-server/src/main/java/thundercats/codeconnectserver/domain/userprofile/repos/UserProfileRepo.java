@@ -10,6 +10,5 @@ import java.util.Optional;
 public interface UserProfileRepo extends JpaRepository<UserProfile, Long> {
     Optional<UserProfile> findByEmail(String email);
     Optional<UserProfile> findByFirstNameAndLastName(String firstName, String lastName);
-    Optional<Group> findByOwnedGroup(String ownedGroup);
 
 }

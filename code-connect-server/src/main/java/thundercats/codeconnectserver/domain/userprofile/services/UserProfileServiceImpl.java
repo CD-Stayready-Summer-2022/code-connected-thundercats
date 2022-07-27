@@ -143,9 +143,7 @@ public class UserProfileServiceImpl implements UserProfileService{
     }
     @Override
     public Group searchForGroupByName(String nameOfGroup) throws ResourceNotFoundException{
-        return userProfileRepo.findByOwnedGroup(nameOfGroup)
-                .orElseThrow(()-> new ResourceNotFoundException("No Group with name:" + nameOfGroup));
-
+        return null;
     }
 
     @Override

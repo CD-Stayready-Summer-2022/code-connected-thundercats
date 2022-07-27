@@ -21,25 +21,20 @@ public class Group {
     private Long id;
     @NonNull
     private String nameOfGroup;
-    @NonNull
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "owner_id", nullable = false)
-    private UserProfile owner;
-    @NonNull
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group") // mappedBy may need to be changed
     private List<UserProfile> users;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Post> groupPosts;
 
-
     @Override
     public String toString() {
         return "Group{" +
                 "id=" + id +
                 ", nameOfGroup='" + nameOfGroup + '\'' +
-                ", owner=" + owner +
-                ", users=" + users +
+                //", owner=" + owner +
+                //", users=" + users +
                 ", groupPosts=" + groupPosts +
                 '}';
     }
