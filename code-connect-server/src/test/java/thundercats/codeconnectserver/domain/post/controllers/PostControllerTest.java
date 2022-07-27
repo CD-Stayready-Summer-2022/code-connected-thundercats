@@ -55,7 +55,7 @@ public class PostControllerTest {
     public void createTest01() throws Exception {
         BDDMockito.doReturn(savedPost01).when(mockPostService).create(any(), any());
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/posts")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/posts/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(BaseControllerTest.asJsonString(mockPost01)))
 
@@ -135,7 +135,7 @@ public class PostControllerTest {
     @DisplayName("Post DELETE - failed")
     public void deleteTest02() throws Exception {
         BDDMockito.doThrow(new ResourceNotFoundException("Not Found")).when(mockPostService).delete(any());
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/1"))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/posts/1"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }

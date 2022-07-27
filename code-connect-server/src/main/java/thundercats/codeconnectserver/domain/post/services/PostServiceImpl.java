@@ -28,7 +28,8 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Post create(UserProfile user, Post post) {
+    public Post create(Long user_id, Post post) {
+        UserProfile user = userProfileService.getById(user_id);
         post.setPublisher(user);
         return postRepo.save(post);
     }
@@ -43,7 +44,8 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public List<Post> getAllFromUser(UserProfile user) {
+    public List<Post> getAllFromUser(Long user_id) {
+        UserProfile user = userProfileService.getById(user_id);
         return postRepo.findByPublisher(user);
     }
 
