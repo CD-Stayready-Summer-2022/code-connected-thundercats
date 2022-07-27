@@ -22,9 +22,6 @@ public class Group {
     @NonNull
     private String nameOfGroup;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group") // mappedBy may need to be changed
-    private List<UserProfile> users;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Post> groupPosts;
 
