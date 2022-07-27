@@ -26,10 +26,14 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "receiving_user_id")
     @NonNull
-    private Long receivingUserId;
+    private UserProfile receivingUser;
+    @ManyToOne
+    @JoinColumn(name = "sending_user_id")
     @NonNull
-    private Long sendingUserId;
+    private UserProfile sendingUser;
     @NonNull
     private String content;
 
@@ -38,7 +42,7 @@ public class Message {
 
     @Override
     public String toString() {
-        return String.format("%d %s %s %s %s", id, receivingUserId, sendingUserId, content, date);
+        return String.format("%d %s %s %s %s", id, receivingUser, sendingUser, content, date);
     }
 
     @PrePersist

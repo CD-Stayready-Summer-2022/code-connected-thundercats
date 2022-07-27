@@ -1,93 +1,38 @@
 package thundercats.codeconnectserver.domain.experience;
 
+import lombok.*;
 import thundercats.codeconnectserver.domain.employmenttype.EmploymentType;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
+@RequiredArgsConstructor
+@Getter
+@Setter
 public class Experience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NonNull
     private String jobTitle;
+    @NonNull
     private String company;
+    @NonNull
     private String location;
+    @NonNull
     private String startDate;
+    @NonNull
     private String endDate;
+    @NonNull
     private EmploymentType employmentType;
 
+    @NonNull
     @OneToOne
     @JoinColumn(name="user_profile_id", referencedColumnName = "id")
     private UserProfile userProfile;
-
-    public Experience(){}
-
-    public Experience(String jobTitle, String company, String location, String startDate, String endDate, EmploymentType employmentType) {
-        this.jobTitle = jobTitle;
-        this.company = company;
-        this.location = location;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.employmentType = employmentType;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public EmploymentType getEmploymentType() {
-        return employmentType;
-    }
-
-    public void setEmploymentType(EmploymentType employmentType) {
-        this.employmentType = employmentType;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String toString() {
         return String.format("%s, %s, %s, %s, %s, %s", jobTitle, company, location, startDate, endDate, employmentType);
