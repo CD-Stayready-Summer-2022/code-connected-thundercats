@@ -1,8 +1,8 @@
 package thundercats.codeconnectserver.domain.post.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import thundercats.codeconnectserver.domain.comment.model.Comment;
-import thundercats.codeconnectserver.domain.group.model.Group;
 import thundercats.codeconnectserver.domain.userprofile.models.UserProfile;
 
 import javax.persistence.*;
@@ -22,33 +22,22 @@ public class Post {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference
     private UserProfile publisher;
 
     private String content;
 
     @Temporal(TemporalType.DATE) // tariq used TIMESTAMP, thought this might be more relevant
-    private Date created;
-
-    @ManyToOne
-    private Group group;
+    private Date publishDate;
 
     @PrePersist
     public void onCreate() {
-        created = new Date();
+        publishDate = new Date();
     }
     private Integer likes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post") // mappedBy may need to be changed
     private List<Comment> comments;
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
-
 
     public Post(String content) {
         this.content = content;
