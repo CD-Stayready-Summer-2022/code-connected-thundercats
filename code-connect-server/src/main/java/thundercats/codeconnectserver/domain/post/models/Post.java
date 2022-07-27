@@ -11,7 +11,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "posts")
 public class Post {
@@ -28,8 +29,7 @@ public class Post {
     @Temporal(TemporalType.DATE) // tariq used TIMESTAMP, thought this might be more relevant
     private Date created;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "group_id")
+    @ManyToOne
     private Group group;
 
     @PrePersist
@@ -48,6 +48,7 @@ public class Post {
     public void setGroup(Group group) {
         this.group = group;
     }
+
 
     public Post(String content) {
         this.content = content;

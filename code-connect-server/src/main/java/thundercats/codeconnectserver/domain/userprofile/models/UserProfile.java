@@ -4,11 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Type;
 import thundercats.codeconnectserver.domain.education.Education;
 import thundercats.codeconnectserver.domain.experience.Experience;
 import thundercats.codeconnectserver.domain.group.model.Group;
-import thundercats.codeconnectserver.domain.message.models.Message;
 import thundercats.codeconnectserver.domain.post.models.Post;
 
 
@@ -44,8 +42,7 @@ public class UserProfile {
             cascade = CascadeType.ALL)
     private Group ownedGroup;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "group_id")
+    @ManyToOne
     private Group group;
 
     @OneToOne(mappedBy = "userProfile")
@@ -54,8 +51,8 @@ public class UserProfile {
     @OneToOne(mappedBy = "userProfile")
     private Experience experience;
 
-    @OneToMany
-    List<Post> posts;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisher")
+    private List<Post> posts;
 
 
     //List<Long> follower;

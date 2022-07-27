@@ -27,7 +27,7 @@ public class UserProfileController {
         this.userProfileService = userProfileService;
     }
 
-    @PostMapping
+    @PostMapping("/new")
     public ResponseEntity<UserProfile> create(@RequestBody UserProfile userProfile) throws ResourceCreationException {
         userProfile = userProfileService.create(userProfile);
         return new ResponseEntity<>(userProfile, HttpStatus.CREATED);

@@ -19,7 +19,10 @@ public class Experience {
     private EmploymentType employmentType;
 
     @OneToOne
+    @JoinColumn(name="user_profile_id", referencedColumnName = "id")
     private UserProfile userProfile;
+
+    public Experience(){}
 
     public Experience(String jobTitle, String company, String location, String startDate, String endDate, EmploymentType employmentType) {
         this.jobTitle = jobTitle;
