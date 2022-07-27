@@ -21,19 +21,16 @@ import java.util.TimeZone;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Data
+@Table(name = "messages")
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "receiving_user_id")
-    @NonNull
-    private UserProfile receivingUser;
+    private UserProfile receiver;
     @ManyToOne
-    @JoinColumn(name = "sending_user_id")
-    @NonNull
-    private UserProfile sendingUser;
+    private UserProfile sender;
     @NonNull
     private String content;
 
@@ -42,7 +39,7 @@ public class Message {
 
     @Override
     public String toString() {
-        return String.format("%d %s %s %s %s", id, receivingUser, sendingUser, content, date);
+        return String.format("%d %s %s %s %s", id, receiver, sender, content, date);
     }
 
     @PrePersist

@@ -28,8 +28,8 @@ public class MessageServiceImpl implements MessageService{
     }
 
     @Override
-    public List<Message> getByReceivingUserId(Long receivingUserId){
-        return messageRepo.findByReceivingUserId(receivingUserId);
+    public List<Message> getByReceiver(Long receiver){
+        return messageRepo.findByReceiver(receiver);
     }
 
     @Override

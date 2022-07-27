@@ -39,9 +39,9 @@ public class MessageController {
         return ResponseEntity.ok(message);
     }
 
-    @GetMapping("/messages/{receivingUserId}")
-    public ResponseEntity<List<Message>> getMessagesByReceivingUserId(@PathVariable Long receivingUserId) {
-        List<Message> messages = messageService.getByReceivingUserId(receivingUserId);
+    @GetMapping("/messages/{receiver}")
+    public ResponseEntity<List<Message>> getMessagesByReceivingUserId(@PathVariable Long receiver) {
+        List<Message> messages = messageService.getByReceiver(receiver);
         return ResponseEntity.ok(messages);
     }
 
